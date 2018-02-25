@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/custom.css">
+    <title>Movie Review Categorization</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <h1 class="text-center">Classify Movie Review</h1>
+        <div class="container" id="form">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-12">
+                    <div class="form-group">
+                        <label for="text">Text to Classify:</label>
+                        <textarea class="form-control" id="text" aria-describedby="textHelp"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-12">
+                    <div class="form-group">
+                        <label for="model-select">Select Model:</label>
+                        <select class="form-control" id="model-select">
+                            <option>All</option>
+                            <option>Linear SVC</option>
+                            <option>Multinomial Naive Bayes</option>
+                            <option>Multi-Layer Perceptron</option>
+                            <option>Y. Kim CNN</option>
+                            <option>F. Chollet CNN</option>
+                            <option>Graph CNN [Chebyshev]</option>
+                            <option>Graph CNN [Spline]</option>
+                            <option>Graph CNN [Fourier]</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-8 align-self-end">
+                    <button type="submit" class="btn btn-primary btn-block" id="submit-btn" onclick="submit();">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="results-section" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-12" id="results"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3 col-8">
+                    <button type="submit" class="btn btn-warning btn-block" id="clear-btn" onclick="clearResults();">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-primary result" id="result-template">
+            <strong>Model Name:</strong> Class Name (Probability %)
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="static/main.js"></script>
+</body>
+
+</html>

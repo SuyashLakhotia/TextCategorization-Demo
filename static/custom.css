@@ -1,0 +1,32 @@
+html {
+    background-color: #fefefe;
+}
+
+.main-container {
+    min-height: 100%;
+    min-height: 100vh;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-top: 8px solid #454545;
+    border-bottom: 8px solid #454545;
+}
+
+#form {
+    margin-top: 3rem;
+}
+
+#form #text {
+    min-height: calc(5rem + 2px);
+}
+
+#form #submit-btn {
+    margin-bottom: 1rem;
+}
+
+#results-section {
+    margin-top: 2rem;
+}
+
+#result-template {
+    display: none;
+}
