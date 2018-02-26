@@ -1,7 +1,7 @@
 const API_BASE_URL = 'http://127.0.0.1:5000';
 
-const MODEL_IDS = ["all", "LinearSVC", "MultinomialNB", "mlp", "cnn_fchollet", "cnn_ykim", "gcnn_chebyshev",
-                   "gcnn_spline", "gcnn_fourier"]
+const MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "mlp", "cnn_fchollet", "cnn_ykim",
+                   "gcnn_chebyshev", "gcnn_spline", "gcnn_fourier"]
 
 function submit() {
     clearResults();

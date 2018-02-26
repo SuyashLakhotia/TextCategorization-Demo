@@ -1,7 +1,7 @@
 from flask import Flask, make_response, jsonify, request, render_template
 
 
-MODEL_IDS = ["all", "LinearSVC", "MultinomialNB", "mlp", "cnn_fchollet", "cnn_ykim", "gcnn_chebyshev",
+MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "mlp", "cnn_fchollet", "cnn_ykim", "gcnn_chebyshev",
              "gcnn_spline", "gcnn_fourier"]
 CLASS_NAMES = ["POSITIVE", "NEGATIVE"]
 
@@ -29,10 +29,10 @@ def categorize_text():
     if model_id == "all":
         for i in range(1, len(MODEL_IDS)):
             res.append(_json_record(MODEL_IDS[i], "POSITIVE", 90.23))
-    elif model_id == "LinearSVC":
-        res.append(_json_record("LinearSVC", "POSITIVE", 90.23))
-    elif model_id == "MultinomialNB":
-        res.append(_json_record("MultinomialNB", "POSITIVE", 90.23))
+    elif model_id == "linear_svc":
+        res.append(_json_record("linear_svc", "POSITIVE", 90.23))
+    elif model_id == "multinomial_nb":
+        res.append(_json_record("multinomial_nb", "POSITIVE", 90.23))
     elif model_id == "mlp":
         res.append(_json_record("mlp", "POSITIVE", 90.23))
     elif model_id == "cnn_fchollet":
