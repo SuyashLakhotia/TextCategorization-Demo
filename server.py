@@ -2,7 +2,7 @@ from flask import Flask, make_response, jsonify, request, render_template
 
 import preprocess
 import models
-import rcv1_constants as RCV1
+import rcv1_constants as dataset
 
 app = Flask(__name__)
 
@@ -23,12 +23,12 @@ def classify_text():
     text = req.get("text")
     model_id = req.get("model_id")
 
-    data_tfidf, data_word2ind = preprocess.preprocess(text, RCV1.VOCABULARY)
+    data_tfidf, data_word2ind = preprocess.preprocess(text, dataset.VOCABULARY)
     results = models.run_models(model_id, data_tfidf, data_word2ind)
 
     _res = []
     for model_id, result in results.items():
-        _res.append(_json_record(model_id, RCV1.CLASS_NAMES[RCV1.CLASSES[result[0]]], result[1]))
+        _res.append(_json_record(model_id, dataset.CLASS_NAMES[dataset.CLASSES[result[0]]], result[1]))
 
     return jsonify(_res)
 
