@@ -24,11 +24,11 @@ def run_models(model_id, data_tfidf, data_word2ind):
     if model_id == "all" or model_id == "mlp":
         results["mlp"] = (0, 00.00)
     if model_id == "all" or model_id == "cnn_fchollet":
-        results["cnn_fchollet"] = (0, 00.00)
+        results["cnn_fchollet"] = run_cnn_fchollet(data_word2ind)
     if model_id == "all" or model_id == "cnn_ykim":
-        results["cnn_ykim"] = (0, 00.00)
+        results["cnn_ykim"] = run_cnn_ykim(data_word2ind)
     if model_id == "all" or model_id == "gcnn_chebyshev":
-        results["gcnn_chebyshev"] = (0, 00.00)
+        results["gcnn_chebyshev"] = run_gcnn_chebyshev(data_tfidf)
     if model_id == "all" or model_id == "gcnn_spline":
         results["gcnn_spline"] = (0, 00.00)
     if model_id == "all" or model_id == "gcnn_fourier":
@@ -59,6 +59,27 @@ def run_softmax(data_tfidf):
     predicted, probability = _run_tf_model(data_tfidf,
                                            "models/mlp/1521146411/checkpoints/model-164100.meta",
                                            "models/mlp/1521146411/checkpoints/.")
+    return (predicted, probability * 100)
+
+
+def run_cnn_fchollet(data_word2ind):
+    predicted, probability = _run_tf_model(data_word2ind,
+                                           "models/cnn_fchollet/1520951089/checkpoints/model-164100.meta",
+                                           "models/cnn_fchollet/1520951089/checkpoints/.")
+    return (predicted, probability * 100)
+
+
+def run_cnn_ykim(data_word2ind):
+    predicted, probability = _run_tf_model(data_word2ind,
+                                           "models/cnn_ykim/1520942963/checkpoints/model-164100.meta",
+                                           "models/cnn_ykim/1520942963/checkpoints/.")
+    return (predicted, probability * 100)
+
+
+def run_gcnn_chebyshev(data_tfidf):
+    predicted, probability = _run_tf_model(data_tfidf,
+                                           "models/gcnn_chebyshev/1521146641/checkpoints/model-164100.meta",
+                                           "models/gcnn_chebyshev/1521146641/checkpoints/.")
     return (predicted, probability * 100)
 
 
