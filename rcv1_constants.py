@@ -3,6 +3,7 @@ import pickle
 VOCABULARY = pickle.load(open("rcv1_vocab.pkl", "rb"))
 VOCAB_SIZE = 10000
 SEQ_LEN = 1000
+BATCH_SIZE = 64
 
 CLASSES = ["C11", "C12", "C13", "C14", "C16", "C17", "C18", "C21", "C22", "C23", "C24", "C31", "C32", "C33",
            "C34", "C41", "C42", "E11", "E12", "E13", "E14", "E21", "E31", "E41", "E51", "E61", "E71",
