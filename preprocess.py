@@ -3,6 +3,8 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 
+import rcv1_constants as dataset
+
 
 def preprocess(text, vocab):
     text = clean_text(text)
@@ -40,7 +42,7 @@ def tfidf_vectorize(documents, vocab):
 
 def generate_word2ind(documents, vocab, tfidf_vectorizer):
     # Parameters for generating word2ind
-    maxlen = 1000
+    maxlen = dataset.SEQ_LEN
     padding = "post"
     truncating = "post"
 
