@@ -16,7 +16,7 @@ html {
 }
 
 #form #text {
-    min-height: calc(5rem + 2px);
+    height: calc(15rem + 2px);
 }
 
 #form #submit-btn {
