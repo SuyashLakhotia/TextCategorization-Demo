@@ -56,22 +56,33 @@ def run_multinomial_nb(data_tfidf):
 
 
 def run_softmax(data_tfidf):
-    sess = tf.Session()
-    saver = tf.train.import_meta_graph("models/mlp/1521146411/checkpoints/model-164100.meta")
-    saver.restore(sess, tf.train.latest_checkpoint("models/mlp/1521146411/checkpoints/."))
+    predicted, probability = _run_tf_model(data_tfidf,
+                                           "models/mlp/1521146411/checkpoints/model-164100.meta",
+                                           "models/mlp/1521146411/checkpoints/.")
+    return (predicted, probability * 100)
 
-    scores_op = tf.get_default_graph().get_tensor_by_name("output/scores:0")
-    predictions_op = tf.get_default_graph().get_tensor_by_name("output/predictions:0")
 
-    x_batch = np.zeros((dataset.BATCH_SIZE, data_tfidf.shape[1]))
-    x_batch[0] = data_tfidf[0]
-    feed_dict = {
-        "input_x:0": x_batch,
-        "train_flag:0": False
-    }
-    scores, predictions = sess.run([scores_op, predictions_op], feed_dict)
+def _run_tf_model(data, graph_filepath, checkpoints_filepath):
+    graph = tf.Graph()
+    sess = tf.Session(graph=graph)
+    with graph.as_default():
+        saver = tf.train.import_meta_graph(graph_filepath)
+        saver.restore(sess, tf.train.latest_checkpoint(checkpoints_filepath))
 
-    probabilities = np.exp(scores[0]) / np.sum(np.exp(scores[0]))
+        scores_op = tf.get_default_graph().get_tensor_by_name("output/scores:0")
+        predictions_op = tf.get_default_graph().get_tensor_by_name("output/predictions:0")
+
+        x_batch = np.zeros((dataset.BATCH_SIZE, data.shape[1]))
+        x_batch[0] = data[0]
+        feed_dict = {
+            "input_x:0": x_batch,
+            "train_flag:0": False
+        }
+        scores, predictions = sess.run([scores_op, predictions_op], feed_dict)
+
     predicted = predictions[0]
 
-    return (predicted, probabilities[predicted] * 100)
+    e_x = np.exp(scores[0] - np.max(scores[0]))
+    probability = e_x[predicted] / np.sum(e_x)
+
+    return predicted, probability
