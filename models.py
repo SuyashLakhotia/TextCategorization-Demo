@@ -3,8 +3,8 @@ import pickle
 import sklearn
 
 
-MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "mlp", "cnn_fchollet", "cnn_ykim", "gcnn_chebyshev",
-             "gcnn_spline", "gcnn_fourier"]
+MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "softmax", "mlp", "cnn_fchollet", "cnn_ykim",
+             "gcnn_chebyshev", "gcnn_spline", "gcnn_fourier"]
 
 
 def run_models(model_id, data_tfidf, data_word2ind):
@@ -14,6 +14,8 @@ def run_models(model_id, data_tfidf, data_word2ind):
         results["linear_svc"] = run_linear_svc(data_tfidf)
     if model_id == "all" or model_id == "multinomial_nb":
         results["multinomial_nb"] = run_multinomial_nb(data_tfidf)
+    if model_id == "all" or model_id == "softmax":
+        results["softmax"] = (0, 00.00)
     if model_id == "all" or model_id == "mlp":
         results["mlp"] = (0, 00.00)
     if model_id == "all" or model_id == "cnn_fchollet":

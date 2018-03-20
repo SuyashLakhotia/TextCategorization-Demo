@@ -1,8 +1,8 @@
 const API_BASE_URL = 'http://127.0.0.1:5000';
 
-const MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "mlp", "cnn_fchollet", "cnn_ykim",
+const MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "softmax", "mlp", "cnn_fchollet", "cnn_ykim",
                    "gcnn_chebyshev", "gcnn_spline", "gcnn_fourier"]
-const MODEL_NAMES = {"linear_svc": "Linear SVC", "multinomial_nb": "Multinomial Naive Bayes", "mlp": "Multilayer Perceptron", "cnn_fchollet": "F. Chollet CNN", "cnn_ykim": "Y. Kim CNN", "gcnn_chebyshev": "Graph CNN (Chebyshev)", "gcnn_spline": "Graph CNN (Spline)", "gcnn_fourier": "Graph CNN (Fourier)"}
+const MODEL_NAMES = {"linear_svc": "Linear SVC", "multinomial_nb": "Multinomial Naive Bayes", "softmax": "Softmax", "mlp": "Multilayer Perceptron", "cnn_fchollet": "F. Chollet CNN", "cnn_ykim": "Y. Kim CNN", "gcnn_chebyshev": "Graph CNN (Chebyshev)", "gcnn_spline": "Graph CNN (Spline)", "gcnn_fourier": "Graph CNN (Fourier)"}
 
 function submit() {
     clearResults();
