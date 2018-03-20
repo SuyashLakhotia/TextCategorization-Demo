@@ -41,4 +41,8 @@ def run_multinomial_nb(data_tfidf):
     clf = pickle.load(open("models/multinomial_nb/1521482564/pickle.pkl", "rb"))
     predicted = clf.predict(data_tfidf)[0]
     confidence = clf.predict_proba(data_tfidf)
-    return (predicted, confidence[0][predicted] * 100)
+    if predicted >= 45:  # issue with 'GVOTE' class
+        _predicted = predicted - 1
+    else:
+        _predicted = predicted
+    return (predicted, confidence[0][_predicted] * 100)
