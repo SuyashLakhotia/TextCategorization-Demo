@@ -33,8 +33,12 @@ function showResults(data) {
     let $results = $('#results');
     for (const datum of data) {
         let $result = $('#result-template').clone().removeAttr('id');
-        $result.html('<strong>' + datum['model_id'] + ':</strong> ' + datum['class_name'] + ' (' +
-                     datum['confidence'] + '%)');
+        
+        let html = '<strong>' + datum['model_id'] + ':</strong> ' + datum['class_name'];
+        if (datum['confidence'] != undefined)
+            html += ' (' + datum['confidence'] + '%)';
+
+        $result.html(html);
         $results.append($result);
     }
     $('#results-section').show();
