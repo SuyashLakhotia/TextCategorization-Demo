@@ -22,7 +22,7 @@ def run_models(model_id, data_tfidf, data_word2ind):
     if model_id == "all" or model_id == "softmax":
         results["softmax"] = run_softmax(data_tfidf)
     if model_id == "all" or model_id == "mlp":
-        results["mlp"] = (0, 00.00)
+        results["mlp"] = run_mlp(data_tfidf)
     if model_id == "all" or model_id == "cnn_fchollet":
         results["cnn_fchollet"] = run_cnn_fchollet(data_word2ind)
     if model_id == "all" or model_id == "cnn_ykim":
@@ -30,7 +30,7 @@ def run_models(model_id, data_tfidf, data_word2ind):
     if model_id == "all" or model_id == "gcnn_chebyshev":
         results["gcnn_chebyshev"] = run_gcnn_chebyshev(data_tfidf)
     if model_id == "all" or model_id == "gcnn_spline":
-        results["gcnn_spline"] = (0, 00.00)
+        results["gcnn_spline"] = run_gcnn_spline(data_tfidf)
     if model_id == "all" or model_id == "gcnn_fourier":
         results["gcnn_fourier"] = (0, 00.00)
 
@@ -62,6 +62,13 @@ def run_softmax(data_tfidf):
     return (predicted, probability * 100)
 
 
+def run_mlp(data_tfidf):
+    predicted, probability = _run_tf_model(data_tfidf,
+                                           "models/mlp/1521613235/checkpoints/model-164100.meta",
+                                           "models/mlp/1521613235/checkpoints/.")
+    return (predicted, probability * 100)
+
+
 def run_cnn_fchollet(data_word2ind):
     predicted, probability = _run_tf_model(data_word2ind,
                                            "models/cnn_fchollet/1520951089/checkpoints/model-164100.meta",
@@ -83,10 +90,15 @@ def run_gcnn_chebyshev(data_tfidf):
     return (predicted, probability * 100)
 
 
+def run_gcnn_spline(data_tfidf):
+    predicted, probability = _run_tf_model(data_tfidf,
+                                           "models/gcnn_spline/1521456262/checkpoints/model-164100.meta",
+                                           "models/gcnn_spline/1521456262/checkpoints/.")
+    return (predicted, probability * 100)
+
+
 def _run_tf_model(data, graph_filepath, checkpoints_filepath):
-    graph = tf.Graph()
-    sess = tf.Session(graph=graph)
-    with graph.as_default():
+    with tf.Session(graph=tf.Graph()) as sess:
         saver = tf.train.import_meta_graph(graph_filepath)
         saver.restore(sess, tf.train.latest_checkpoint(checkpoints_filepath))
 
