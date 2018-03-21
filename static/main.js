@@ -14,6 +14,8 @@ function submit() {
         text: text
     };
 
+    $('#submit-btn').html('<i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;Loading');
+
     $.ajax({
         async: true,
         crossDomain: true,
@@ -43,6 +45,7 @@ function showResults(data) {
         $results.append($result);
     }
     $('#results-section').show();
+    $('#submit-btn').html('Submit');
 }
 
 function clearResults() {
