@@ -15,6 +15,7 @@ function submit() {
     };
 
     $('#submit-btn').html('<i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;Loading');
+    $('#submit-btn').prop('disabled', true);
 
     $.ajax({
         async: true,
@@ -46,6 +47,7 @@ function showResults(data) {
     }
     $('#results-section').show();
     $('#submit-btn').html('Submit');
+    $('#submit-btn').prop('disabled', false);
 }
 
 function clearResults() {
