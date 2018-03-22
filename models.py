@@ -32,7 +32,7 @@ def run_models(model_id, data_tfidf, data_word2ind):
     if model_id == "all" or model_id == "gcnn_spline":
         results["gcnn_spline"] = run_gcnn_spline(data_tfidf)
     if model_id == "all" or model_id == "gcnn_fourier":
-        results["gcnn_fourier"] = (0, 00.00)
+        results["gcnn_fourier"] = run_gcnn_fourier(data_tfidf)
 
     return results
 
@@ -94,6 +94,13 @@ def run_gcnn_spline(data_tfidf):
     predicted, probability = _run_tf_model(data_tfidf,
                                            "models/gcnn_spline/1521456262/checkpoints/model-164100.meta",
                                            "models/gcnn_spline/1521456262/checkpoints/.")
+    return (predicted, probability * 100)
+
+
+def run_gcnn_fourier(data_tfidf):
+    predicted, probability = _run_tf_model(data_tfidf,
+                                           "models/gcnn_fourier/1521585284/checkpoints/model-164100.meta",
+                                           "models/gcnn_fourier/1521585284/checkpoints/.")
     return (predicted, probability * 100)
 
 
