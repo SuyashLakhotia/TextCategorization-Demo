@@ -21,10 +21,10 @@ def root():
 def classify_text():
     req = request.get_json()
     text = req.get("text")
-    model_id = req.get("model_id")
+    model_id_arr = req.get("modelIDs")
 
     data_tfidf, data_word2ind = preprocess.preprocess(text, dataset.VOCABULARY)
-    results = models.run_models(model_id, data_tfidf, data_word2ind)
+    results = models.run_models(model_id_arr, data_tfidf, data_word2ind)
 
     _res = []
     for model_id, result in results.items():
@@ -35,9 +35,9 @@ def classify_text():
 
 def _json_record(model_id, class_name, confidence):
     if confidence != "N/A":
-        record = {"model_id": model_id, "class_name": class_name, "confidence": "{:.2f}".format(confidence)}
+        record = {"modelID": model_id, "className": class_name, "confidence": "{:.2f}".format(confidence)}
     else:
-        record = {"model_id": model_id, "class_name": class_name}
+        record = {"modelID": model_id, "className": class_name}
 
     return record
 

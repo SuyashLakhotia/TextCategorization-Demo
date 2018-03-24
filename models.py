@@ -7,30 +7,30 @@ import numpy as np
 import rcv1_constants as dataset
 
 
-MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "softmax", "mlp", "cnn_fchollet", "cnn_ykim",
-             "gcnn_chebyshev", "gcnn_spline", "gcnn_fourier"]
+MODEL_IDS = ["linear_svc", "multinomial_nb", "softmax", "mlp", "cnn_fchollet", "cnn_ykim", "gcnn_chebyshev",
+             "gcnn_spline", "gcnn_fourier"]
 
 
-def run_models(model_id, data_tfidf, data_word2ind):
+def run_models(model_id_arr, data_tfidf, data_word2ind):
     results = {}
 
-    if model_id == "all" or model_id == "linear_svc":
+    if "linear_svc" in model_id_arr:
         results["linear_svc"] = run_linear_svc(data_tfidf)
-    if model_id == "all" or model_id == "multinomial_nb":
+    if "multinomial_nb" in model_id_arr:
         results["multinomial_nb"] = run_multinomial_nb(data_tfidf)
-    if model_id == "all" or model_id == "softmax":
+    if "softmax" in model_id_arr:
         results["softmax"] = run_softmax(data_tfidf)
-    if model_id == "all" or model_id == "mlp":
+    if "mlp" in model_id_arr:
         results["mlp"] = run_mlp(data_tfidf)
-    if model_id == "all" or model_id == "cnn_fchollet":
+    if "cnn_fchollet" in model_id_arr:
         results["cnn_fchollet"] = run_cnn_fchollet(data_word2ind)
-    if model_id == "all" or model_id == "cnn_ykim":
+    if "cnn_ykim" in model_id_arr:
         results["cnn_ykim"] = run_cnn_ykim(data_word2ind)
-    if model_id == "all" or model_id == "gcnn_chebyshev":
+    if "gcnn_chebyshev" in model_id_arr:
         results["gcnn_chebyshev"] = run_gcnn_chebyshev(data_tfidf)
-    if model_id == "all" or model_id == "gcnn_spline":
+    if "gcnn_spline" in model_id_arr:
         results["gcnn_spline"] = run_gcnn_spline(data_tfidf)
-    if model_id == "all" or model_id == "gcnn_fourier":
+    if "gcnn_fourier" in model_id_arr:
         results["gcnn_fourier"] = run_gcnn_fourier(data_tfidf)
 
     return results

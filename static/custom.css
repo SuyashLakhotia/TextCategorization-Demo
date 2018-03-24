@@ -16,11 +16,15 @@ html {
 }
 
 #form #text {
-    height: calc(15rem + 2px);
+    height: 22rem;
+}
+
+#form .form-check{
+    margin: 0.5rem 0;
 }
 
 #form #submit-btn {
-    margin-bottom: 1rem;
+    margin-top: 1.5rem;
 }
 
 #results-section {

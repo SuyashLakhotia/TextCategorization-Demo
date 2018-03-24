@@ -16,32 +16,52 @@
         <h1 class="text-center">Classify News Article 📰</h1>
         <div class="container" id="form">
             <div class="row justify-content-center">
-                <div class="col-md-10 col-12">
+                <div class="col-md-8">
                     <div class="form-group">
-                        <label for="text">Text to Classify:</label>
+                        <label for="text"><strong>Text to Classify:</strong></label>
                         <textarea class="form-control" id="text" aria-describedby="textHelp"></textarea>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-7 col-12">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label for="model-select">Select Model:</label>
-                        <select class="form-control" id="model-select">
-                            <option>All</option>
-                            <option>Linear SVC</option>
-                            <option>Multinomial Naive Bayes</option>
-                            <option>Softmax</option>
-                            <option>Multilayer Perceptron</option>
-                            <option>F. Chollet CNN</option>
-                            <option>Y. Kim CNN</option>
-                            <option>Graph CNN [Chebyshev]</option>
-                            <option>Graph CNN [Spline]</option>
-                            <option>Graph CNN [Fourier]</option>
-                        </select>
+                        <div class="mb-1"><strong>Select Model(s):</strong></div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="linear_svc" id="check-linear_svc" checked>
+                            <label class="form-check-label" for="check-linear_svc">Linear Support Vector Classifier</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="multinomial_nb" id="check-multinomial_nb" checked>
+                            <label class="form-check-label" for="check-multinomial_nb">Multinomial Naive Bayes Classifer</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="softmax" id="check-softmax" checked>
+                            <label class="form-check-label" for="check-softmax">Softmax</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="mlp" id="check-mlp" checked>
+                            <label class="form-check-label" for="check-mlp">Multilayer Perceptron</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="cnn_ykim" id="check-cnn_ykim" checked>
+                            <label class="form-check-label" for="check-cnn_ykim">Y. Kim CNN</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="cnn_fchollet" id="check-cnn_fchollet" checked>
+                            <label class="form-check-label" for="check-cnn_fchollet">F. Chollet CNN</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="gcnn_chebyshev" id="check-gcnn_chebyshev" checked>
+                            <label class="form-check-label" for="check-gcnn_chebyshev">Graph CNN (Chebyshev)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="gcnn_spline" id="check-gcnn_spline" checked>
+                            <label class="form-check-label" for="check-gcnn_spline">Graph CNN (Spline)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="model-checkbox" value="gcnn_fourier" id="check-gcnn_fourier" checked>
+                            <label class="form-check-label" for="check-gcnn_fourier">Graph CNN (Fourier)</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-8 align-self-end">
                     <button type="submit" class="btn btn-primary btn-block" id="submit-btn" onclick="submit();">Submit</button>
                 </div>
             </div>
@@ -50,7 +70,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-10 col-12" id="results"></div>
             </div>
-            <div class="row justify-content-center mt-4">
+            <div class="row justify-content-center mt-4 mb-3">
                 <div class="col-md-3 col-8">
                     <button type="submit" class="btn btn-warning btn-block" id="clear-btn" onclick="clearResults();">Clear</button>
                 </div>

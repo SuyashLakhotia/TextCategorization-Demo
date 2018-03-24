@@ -1,6 +1,6 @@
 const API_BASE_URL = 'http://127.0.0.1:5000';
 
-const MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "softmax", "mlp", "cnn_fchollet", "cnn_ykim",
+const MODEL_IDS = ["linear_svc", "multinomial_nb", "softmax", "mlp", "cnn_fchollet", "cnn_ykim",
                    "gcnn_chebyshev", "gcnn_spline", "gcnn_fourier"]
 const MODEL_NAMES = {"linear_svc": "Linear SVC", "multinomial_nb": "Multinomial Naive Bayes", "softmax": "Softmax", "mlp": "Multilayer Perceptron", "cnn_fchollet": "F. Chollet CNN", "cnn_ykim": "Y. Kim CNN", "gcnn_chebyshev": "Graph CNN (Chebyshev)", "gcnn_spline": "Graph CNN (Spline)", "gcnn_fourier": "Graph CNN (Fourier)"}
 
@@ -8,9 +8,15 @@ function submit() {
     clearResults();
 
     let text = $('#text').val();
-    let modelID = MODEL_IDS[$('#model-select').prop('selectedIndex')];
+
+    let $selectedModels = $('input[name="model-checkbox"]:checked');
+    let selectedModels = [];
+    for (const $modelCheckbox of $selectedModels) {
+        selectedModels.push($modelCheckbox.value);
+    }
+    
     let request = {
-        model_id: modelID,
+        modelIDs: selectedModels,
         text: text
     };
 
@@ -38,7 +44,7 @@ function showResults(data) {
     for (const datum of data) {
         let $result = $('#result-template').clone().removeAttr('id');
         
-        let html = '<strong>' + MODEL_NAMES[datum['model_id']] + ':</strong> ' + datum['class_name'];
+        let html = '<strong>' + MODEL_NAMES[datum['modelID']] + ':</strong> ' + datum['className'];
         if (datum['confidence'] != undefined)
             html += ' (' + datum['confidence'] + '%)';
 
