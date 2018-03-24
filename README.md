@@ -6,6 +6,6 @@
 
 ![](screenshots/1.png)
 
-**Classifying a News Article from The Straits Times:**
+**Classifying a News Article from Bloomberg:**
 
 ![](screenshots/2.png)
