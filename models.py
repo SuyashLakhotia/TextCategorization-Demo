@@ -13,7 +13,6 @@ MODEL_IDS = ["all", "linear_svc", "multinomial_nb", "softmax", "mlp", "cnn_fchol
 
 def run_models(model_id, data_tfidf, data_word2ind):
     results = {}
-    data_tfidf = data_tfidf.toarray()  # convert sparse matrix to array
 
     if model_id == "all" or model_id == "linear_svc":
         results["linear_svc"] = run_linear_svc(data_tfidf)

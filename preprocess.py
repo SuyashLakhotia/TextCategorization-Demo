@@ -9,6 +9,7 @@ import rcv1_constants as dataset
 def preprocess(text, vocab):
     text = clean_text(text)
     data_tfidf, tfidf_vectorizer = tfidf_vectorize([text], vocab)
+    data_tfidf = data_tfidf.toarray()  # convert sparse matrix to array
     data_word2ind = generate_word2ind([text], vocab, tfidf_vectorizer)
     return data_tfidf, data_word2ind
 
